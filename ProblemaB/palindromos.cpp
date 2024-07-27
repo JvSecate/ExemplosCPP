@@ -9,7 +9,6 @@ int main() {
 
     int quant[26] = {0};
 
-    // Count the occurrences of each letter
     for (char ch : str) {
         quant[ch - 'a']++;
     }
