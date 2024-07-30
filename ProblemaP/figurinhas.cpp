@@ -13,61 +13,51 @@ float toFloat(string input) {
 
 int main() {
     string input;
-    float quant[4], aux[4], fig = 0 , n=1;
+    float quant[4], aux[4], n=1;
     cin>>input;
     cin>>quant[0]>>quant[1]>>quant[2]>>quant[3];
-    float valor = toFloat(input);
+    int valor = toFloat(input)*100;
     float rest;
-
-    do
-    {   
-        rest += valor*100;
-        cout<<rest<<endl;
-        aux[0] = floor(rest/25);
-        if (aux[0] > quant[0])
-        {
-            aux[0] = quant[0];
-        }
-        rest -= (aux[0]*25);
-        cout<<rest<<endl;
-
-        aux[1] = floor(rest/10);
-        if (aux[1] > quant[1])
-        {
-            aux[1] = quant[1];
-        }
-        rest -= (aux[1]*10);
-        cout<<rest<<endl;
-        aux[2] = floor(rest/5);
-        if (aux[2] > quant[2])
-        {
-            aux[2] = quant[2];
-        }
-        rest -= (aux[2]*5);
-        cout<<rest<<endl;
-        aux[3] = floor(rest/1);
-        if (aux[3] > quant[3])
-        {
-            aux[3] = quant[3];
-        }
-        rest -= (aux[3]*1);
-        cout<<rest<<endl;
-        if(rest == 0){
-            fig+=n;
-            quant[0] -= aux[0];
-            quant[1] -= aux[1];
-            quant[2] -= aux[2];
-            quant[1] -= aux[3];
-            break;
-        }
-        else
-        {
-            n++;
-            valor *= n;
-        }
-
-        
-    } while (true);
+	float falta;
+	int fig;
+	fig=((quant[0]*25)+(quant[1]*10)+(quant[2]*5)+(quant[3]*1))/valor;
+	
+	valor=valor*fig;
+	falta=((valor/25)-quant[0]);
+    if(falta<0){
+		quant[0]=(-1)*falta;
+    	falta=0;
+	}else{
+		quant[0]=0;
+	}
+	valor=(valor%25)+(falta*25);
+	
+	falta=((valor/10)-quant[1]);
+    if(falta<0){
+		quant[1]=(-1)*falta;
+    	falta=0;
+	}else{
+		quant[1]=0;
+	}
+	valor=(valor%10)+(falta*10);
+    
+	falta=((valor/5)-quant[2]);
+    if(falta<0){
+		quant[2]=falta*(-1);
+    	falta=0;
+	}else{
+		quant[2]=0;
+	}
+	valor=(valor%5)+(falta*5);
+	
+	falta=((valor/1)-quant[3]);
+    if(falta<0){
+		quant[3]=(-1)*falta;
+    	falta=0;
+	}else{
+		quant[3]=0;
+	}
+	valor=(valor%1)+(falta*1);
     
     cout<<fig<<endl<<quant[0]+quant[1]+quant[2]+quant[3]<<endl;
     return 0;

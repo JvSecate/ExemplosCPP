@@ -1,17 +1,19 @@
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
-int main(){
-	long long int ent;
-	double aux;
-	cin>>ent;
-	if(ent>=10000000){
-		ent=ent-3;
+long long FuncaoDeX(long long entrada){
+	if(entrada >= 10000000){
+		entrada = entrada - 3;
 	}else{
-		//
+		entrada = FuncaoDeX(FuncaoDeX(FuncaoDeX(entrada + 13)));
 	}
-	cout<<ent<<endl;
+	return entrada;
+}
+
+int main(){
+	long long ent;
+	cin>> ent;
+	cout << FuncaoDeX(ent) << endl;
 	return 0;
 }
